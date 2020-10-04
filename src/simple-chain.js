@@ -5,9 +5,9 @@ const chainMaker = {
   chain: '',
 
   getLength() {
-    return this.chain.split('~~').length;
-   
+    return this.count;
   },
+
   addLink(value) {
     if (this.chain) {
       this.chain += '~~';
@@ -18,6 +18,7 @@ const chainMaker = {
     } else {
       this.chain += `( ${value} )`;
     }
+    this.count++;
    
     return chainMaker;
   },
@@ -34,20 +35,18 @@ const chainMaker = {
       this.chain = '';
       throw new Error('wrong position!');
     }
-    
-
-    
   },
+
   reverseChain() {
     let arr = this.chain.split('~~');
     this.chain = arr.reverse().join('~~');
     return chainMaker;
   },
+
   finishChain() {
     let chain = this.chain;
     this.chain = '';
     return chain;
-
   }
 };
 
