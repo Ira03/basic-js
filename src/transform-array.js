@@ -18,36 +18,41 @@ module.exports = function transform(arr) {
           newArr.push(arr[i + 1]);
         }
      
-      } else if (arr[i] == '--double-prev') {
+      } 
+       if (arr[i] == '--double-prev') {
         if(arr[i - 1] !== undefined) {
           newArr.push(arr[i - 1]);
+          
         }
         
         
-      } else if (arr[i] == '--discard-next') {
+      }
+        if (arr[i] == '--discard-next') {
         if (arr[i + 1] !== undefined) {
-         
-          i = i + 2;
+          if(arr[i+2] === '--double-prev') {
+            i+=2;
+          } else {
+            i+=1;
+          }
+          
+        continue;
+        
+          
+        
+          
         }
       
-      } else if (arr[i] == '--discard-prev') {
+      } 
+       if (arr[i] == '--discard-prev') {
         if (arr[i - 1] !== undefined) {
           arr[i-2] === '--discard-next' ? i++ : newArr.pop();
         }
         
 
-      } else {
-        newArr.push(arr[i]);
-      }
-
-
-
-
+      } 
+       if (arr[i] !== '--discard-prev' && arr[i] !== '--discard-next' && arr[i] !== '--double-prev' && arr[i] !== '--double-next' ) newArr.push(arr[i]);
+      
     }
-
-
-    
-    
  return newArr;
 };
 
